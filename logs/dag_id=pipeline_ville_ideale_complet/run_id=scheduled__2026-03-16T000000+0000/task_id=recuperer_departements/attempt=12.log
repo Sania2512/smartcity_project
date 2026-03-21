@@ -1,0 +1,20 @@
+[2026-03-17T22:48:21.233+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-17T22:48:21.252+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T22:48:21.262+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T22:48:21.264+0000] {taskinstance.py:2856} INFO - Starting attempt 12 of 12
+[2026-03-17T22:48:21.283+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): recuperer_departements> on 2026-03-16 00:00:00+00:00
+[2026-03-17T22:48:21.293+0000] {standard_task_runner.py:72} INFO - Started process 271 to run task
+[2026-03-17T22:48:21.301+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ville_ideale_complet', 'recuperer_departements', 'scheduled__2026-03-16T00:00:00+00:00', '--job-id', '36', '--raw', '--subdir', 'DAGS_FOLDER/scraping_dag.py', '--cfg-path', '/tmp/tmpur7c8c99']
+[2026-03-17T22:48:21.310+0000] {standard_task_runner.py:105} INFO - Job 36: Subtask recuperer_departements
+[2026-03-17T22:48:21.400+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [running]> on host ***-worker
+[2026-03-17T22:48:21.520+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pipeline_ville_ideale_complet' AIRFLOW_CTX_TASK_ID='recuperer_departements' AIRFLOW_CTX_EXECUTION_DATE='2026-03-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='12' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-16T00:00:00+00:00'
+[2026-03-17T22:48:21.525+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-17T22:48:21.693+0000] {logging_mixin.py:190} INFO - Page principale vide, tentative de secours...
+[2026-03-17T22:48:21.714+0000] {logging_mixin.py:190} INFO - --- BILAN : 0 départements extraits ---
+[2026-03-17T22:48:21.715+0000] {logging_mixin.py:190} INFO - ALERTE : Blocage total. Création manuelle du Dept 01 pour test.
+[2026-03-17T22:48:21.790+0000] {python.py:240} INFO - Done. Returned value was: ['01']
+[2026-03-17T22:48:21.833+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-17T22:48:21.834+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=pipeline_ville_ideale_complet, task_id=recuperer_departements, run_id=scheduled__2026-03-16T00:00:00+00:00, execution_date=20260316T000000, start_date=20260317T224821, end_date=20260317T224821
+[2026-03-17T22:48:21.882+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 0
+[2026-03-17T22:48:21.922+0000] {taskinstance.py:3891} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-17T22:48:21.930+0000] {local_task_job_runner.py:240} INFO - ::endgroup::

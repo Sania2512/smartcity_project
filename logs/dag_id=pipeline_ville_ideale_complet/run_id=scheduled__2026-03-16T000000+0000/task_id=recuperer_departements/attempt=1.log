@@ -1,0 +1,190 @@
+[2026-03-17T21:08:41.938+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-17T21:08:41.957+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:08:41.969+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:08:41.972+0000] {taskinstance.py:2856} INFO - Starting attempt 1 of 1
+[2026-03-17T21:08:41.990+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): recuperer_departements> on 2026-03-16 00:00:00+00:00
+[2026-03-17T21:08:41.996+0000] {standard_task_runner.py:72} INFO - Started process 72 to run task
+[2026-03-17T21:08:42.002+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ville_ideale_complet', 'recuperer_departements', 'scheduled__2026-03-16T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/scraping_dag.py', '--cfg-path', '/tmp/tmpjh0jq1uq']
+[2026-03-17T21:08:42.006+0000] {standard_task_runner.py:105} INFO - Job 2: Subtask recuperer_departements
+[2026-03-17T21:08:42.092+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [running]> on host ***-worker
+[2026-03-17T21:08:42.188+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pipeline_ville_ideale_complet' AIRFLOW_CTX_TASK_ID='recuperer_departements' AIRFLOW_CTX_EXECUTION_DATE='2026-03-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-16T00:00:00+00:00'
+[2026-03-17T21:08:42.191+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-17T21:09:12.895+0000] {taskinstance.py:3301} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/scraping_dag.py", line 46, in task_get_departments
+    collection.drop()
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/collection.py", line 1494, in drop
+    dbo.drop_collection(
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 1336, in drop_collection
+    return self._drop_helper(name, session, comment)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 1250, in _drop_helper
+    with self._client._conn_for_writes(session, operation=_Op.DROP) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1850, in _conn_for_writes
+    server = self._select_server(writable_server_selector, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1833, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 428, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 402, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 298, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 359, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 69b9c2daa6fac51fd6ead4d3, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+[2026-03-17T21:09:12.918+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=pipeline_ville_ideale_complet, task_id=recuperer_departements, run_id=scheduled__2026-03-16T00:00:00+00:00, execution_date=20260316T000000, start_date=20260317T210841, end_date=20260317T210912
+[2026-03-17T21:09:12.948+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-17T21:09:12.952+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 2 for task recuperer_departements (mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 69b9c2daa6fac51fd6ead4d3, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>; 72)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 2995, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 3149, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 3173, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/scraping_dag.py", line 46, in task_get_departments
+    collection.drop()
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/collection.py", line 1494, in drop
+    dbo.drop_collection(
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 1336, in drop_collection
+    return self._drop_helper(name, session, comment)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 1250, in _drop_helper
+    with self._client._conn_for_writes(session, operation=_Op.DROP) as connection:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1850, in _conn_for_writes
+    server = self._select_server(writable_server_selector, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1833, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 428, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 402, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 298, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 359, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 69b9c2daa6fac51fd6ead4d3, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+[2026-03-17T21:09:12.980+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 1
+[2026-03-17T21:09:13.016+0000] {taskinstance.py:3891} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-17T21:09:13.027+0000] {local_task_job_runner.py:240} INFO - ::endgroup::
+[2026-03-17T21:38:45.531+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-17T21:38:45.549+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:38:45.561+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:38:45.563+0000] {taskinstance.py:2856} INFO - Starting attempt 1 of 1
+[2026-03-17T21:38:45.588+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): recuperer_departements> on 2026-03-16 00:00:00+00:00
+[2026-03-17T21:38:45.599+0000] {standard_task_runner.py:72} INFO - Started process 72 to run task
+[2026-03-17T21:38:45.607+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ville_ideale_complet', 'recuperer_departements', 'scheduled__2026-03-16T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/scraping_dag.py', '--cfg-path', '/tmp/tmp0xyx91ht']
+[2026-03-17T21:38:45.622+0000] {standard_task_runner.py:105} INFO - Job 2: Subtask recuperer_departements
+[2026-03-17T21:38:45.732+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [running]> on host ***-worker
+[2026-03-17T21:38:45.870+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pipeline_ville_ideale_complet' AIRFLOW_CTX_TASK_ID='recuperer_departements' AIRFLOW_CTX_EXECUTION_DATE='2026-03-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-16T00:00:00+00:00'
+[2026-03-17T21:38:45.874+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-17T21:38:46.369+0000] {python.py:240} INFO - Done. Returned value was: ['01‑Ain', '02‑Aisne', '03‑Allier', '04‑Alpes‑de‑Haute‑Provence', '05‑Hautes‑Alpes', '06‑Alpes‑Maritimes', '07‑Ardèche', '08‑Ardennes', '09‑Ariège', '10‑Aube', '11‑Aude', '12‑Aveyron', '13‑Bouches‑du‑Rhône', '14‑Calvados', '15‑Cantal', '16‑Charente', '17‑Charente‑Maritime', '18‑Cher', '19‑Corrèze', '2A‑Corse‑du‑Sud', '2B‑Haute‑Corse', "21‑Côte‑d'Or", "22‑Côtes‑d'Armor", '23‑Creuse', '24‑Dordogne', '25‑Doubs', '26‑Drôme', '27‑Eure', '28‑Eure‑et‑Loir', '29‑Finistère', '30‑Gard', '31‑Haute‑Garonne', '32‑Gers', '33‑Gironde', '34‑Hérault', '35‑Ille‑et‑Vilaine', '36‑Indre', '37‑Indre‑et‑Loire', '38‑Isère', '39‑Jura', '40‑Landes', '41‑Loir‑et‑Cher', '42‑Loire', '43‑Haute‑Loire', '44‑Loire‑Atlantique', '45‑Loiret', '46‑Lot', '47‑Lot‑et‑Garonne', '48‑Lozère', '49‑Maine‑et‑Loire', '50‑Manche', '51‑Marne', '52‑Haute‑Marne', '53‑Mayenne', '54‑Meurthe‑et‑Moselle', '55‑Meuse', '56‑Morbihan', '57‑Moselle', '58‑Nièvre', '59‑Nord', '60‑Oise', '61‑Orne', '62‑Pas‑de‑Calais', '63‑Puy‑de‑Dôme', '64‑Pyrénées‑Atlantiques', '65‑Hautes‑Pyrénées', '66‑Pyrénées‑Orientales', '67‑Bas‑Rhin', '68‑Haut‑Rhin', '69‑Rhône', '70‑Haute‑Saône', '71‑Saône‑et‑Loire', '72‑Sarthe', '73‑Savoie', '74‑Haute‑Savoie', '75‑Paris', '76‑Seine‑Maritime', '77‑Seine‑et‑Marne', '78‑Yvelines', '79‑Deux‑Sèvres', '80‑Somme', '81‑Tarn', '82‑Tarn‑et‑Garonne', '83‑Var', '84‑Vaucluse', '85‑Vendée', '86‑Vienne', '87‑Haute‑Vienne', '88‑Vosges', '89‑Yonne', '90‑Territoire\xa0de\xa0Belfort', '91‑Essonne', '92‑Hauts‑de‑Seine', '93‑Seine‑Saint‑Denis', '94‑Val‑de‑Marne', "95‑Val‑d'Oise", '971‑Guadeloupe', '972‑Martinique', '973‑Guyane', '974‑La\xa0Réunion']
+[2026-03-17T21:38:46.411+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-17T21:38:46.413+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=pipeline_ville_ideale_complet, task_id=recuperer_departements, run_id=scheduled__2026-03-16T00:00:00+00:00, execution_date=20260316T000000, start_date=20260317T213845, end_date=20260317T213846
+[2026-03-17T21:38:46.471+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 0
+[2026-03-17T21:38:46.515+0000] {taskinstance.py:3891} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-17T21:38:46.527+0000] {local_task_job_runner.py:240} INFO - ::endgroup::
+[2026-03-17T21:46:29.639+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-17T21:46:29.659+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:46:29.671+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:46:29.672+0000] {taskinstance.py:2856} INFO - Starting attempt 1 of 1
+[2026-03-17T21:46:29.693+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): recuperer_departements> on 2026-03-16 00:00:00+00:00
+[2026-03-17T21:46:29.700+0000] {standard_task_runner.py:72} INFO - Started process 72 to run task
+[2026-03-17T21:46:29.705+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ville_ideale_complet', 'recuperer_departements', 'scheduled__2026-03-16T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/scraping_dag.py', '--cfg-path', '/tmp/tmpof28lx91']
+[2026-03-17T21:46:29.712+0000] {standard_task_runner.py:105} INFO - Job 2: Subtask recuperer_departements
+[2026-03-17T21:46:29.824+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_ville_ideale_complet.recuperer_departements scheduled__2026-03-16T00:00:00+00:00 [running]> on host ***-worker
+[2026-03-17T21:46:29.925+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pipeline_ville_ideale_complet' AIRFLOW_CTX_TASK_ID='recuperer_departements' AIRFLOW_CTX_EXECUTION_DATE='2026-03-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-16T00:00:00+00:00'
+[2026-03-17T21:46:29.929+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-17T21:46:30.366+0000] {python.py:240} INFO - Done. Returned value was: ['01‑Ain', '02‑Aisne', '03‑Allier', '04‑Alpes‑de‑Haute‑Provence', '05‑Hautes‑Alpes', '06‑Alpes‑Maritimes', '07‑Ardèche', '08‑Ardennes', '09‑Ariège', '10‑Aube', '11‑Aude', '12‑Aveyron', '13‑Bouches‑du‑Rhône', '14‑Calvados', '15‑Cantal', '16‑Charente', '17‑Charente‑Maritime', '18‑Cher', '19‑Corrèze', '2A‑Corse‑du‑Sud', '2B‑Haute‑Corse', "21‑Côte‑d'Or", "22‑Côtes‑d'Armor", '23‑Creuse', '24‑Dordogne', '25‑Doubs', '26‑Drôme', '27‑Eure', '28‑Eure‑et‑Loir', '29‑Finistère', '30‑Gard', '31‑Haute‑Garonne', '32‑Gers', '33‑Gironde', '34‑Hérault', '35‑Ille‑et‑Vilaine', '36‑Indre', '37‑Indre‑et‑Loire', '38‑Isère', '39‑Jura', '40‑Landes', '41‑Loir‑et‑Cher', '42‑Loire', '43‑Haute‑Loire', '44‑Loire‑Atlantique', '45‑Loiret', '46‑Lot', '47‑Lot‑et‑Garonne', '48‑Lozère', '49‑Maine‑et‑Loire', '50‑Manche', '51‑Marne', '52‑Haute‑Marne', '53‑Mayenne', '54‑Meurthe‑et‑Moselle', '55‑Meuse', '56‑Morbihan', '57‑Moselle', '58‑Nièvre', '59‑Nord', '60‑Oise', '61‑Orne', '62‑Pas‑de‑Calais', '63‑Puy‑de‑Dôme', '64‑Pyrénées‑Atlantiques', '65‑Hautes‑Pyrénées', '66‑Pyrénées‑Orientales', '67‑Bas‑Rhin', '68‑Haut‑Rhin', '69‑Rhône', '70‑Haute‑Saône', '71‑Saône‑et‑Loire', '72‑Sarthe', '73‑Savoie', '74‑Haute‑Savoie', '75‑Paris', '76‑Seine‑Maritime', '77‑Seine‑et‑Marne', '78‑Yvelines', '79‑Deux‑Sèvres', '80‑Somme', '81‑Tarn', '82‑Tarn‑et‑Garonne', '83‑Var', '84‑Vaucluse', '85‑Vendée', '86‑Vienne', '87‑Haute‑Vienne', '88‑Vosges', '89‑Yonne', '90‑Territoire\xa0de\xa0Belfort', '91‑Essonne', '92‑Hauts‑de‑Seine', '93‑Seine‑Saint‑Denis', '94‑Val‑de‑Marne', "95‑Val‑d'Oise", '971‑Guadeloupe', '972‑Martinique', '973‑Guyane', '974‑La\xa0Réunion']
+[2026-03-17T21:46:30.402+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-17T21:46:30.403+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=pipeline_ville_ideale_complet, task_id=recuperer_departements, run_id=scheduled__2026-03-16T00:00:00+00:00, execution_date=20260316T000000, start_date=20260317T214629, end_date=20260317T214630
+[2026-03-17T21:46:30.450+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 0
+[2026-03-17T21:46:30.489+0000] {taskinstance.py:3891} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-17T21:46:30.495+0000] {local_task_job_runner.py:240} INFO - ::endgroup::

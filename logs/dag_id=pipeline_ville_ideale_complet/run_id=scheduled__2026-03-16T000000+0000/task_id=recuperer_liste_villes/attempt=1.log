@@ -1,0 +1,53 @@
+[2026-03-17T21:21:48.098+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-17T21:21:48.115+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:21:48.124+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:21:48.125+0000] {taskinstance.py:2856} INFO - Starting attempt 1 of 1
+[2026-03-17T21:21:48.144+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): recuperer_liste_villes> on 2026-03-16 00:00:00+00:00
+[2026-03-17T21:21:48.150+0000] {standard_task_runner.py:72} INFO - Started process 100 to run task
+[2026-03-17T21:21:48.155+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ville_ideale_complet', 'recuperer_liste_villes', 'scheduled__2026-03-16T00:00:00+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/scraping_dag.py', '--cfg-path', '/tmp/tmpcywqbsu4']
+[2026-03-17T21:21:48.161+0000] {standard_task_runner.py:105} INFO - Job 7: Subtask recuperer_liste_villes
+[2026-03-17T21:21:48.238+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [running]> on host ***-worker
+[2026-03-17T21:21:48.387+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pipeline_ville_ideale_complet' AIRFLOW_CTX_TASK_ID='recuperer_liste_villes' AIRFLOW_CTX_EXECUTION_DATE='2026-03-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-16T00:00:00+00:00'
+[2026-03-17T21:21:48.390+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-17T21:24:24.520+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-03-17T21:24:24.547+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-17T21:24:24.553+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=pipeline_ville_ideale_complet, task_id=recuperer_liste_villes, run_id=scheduled__2026-03-16T00:00:00+00:00, execution_date=20260316T000000, start_date=20260317T212148, end_date=20260317T212424
+[2026-03-17T21:24:24.624+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 0
+[2026-03-17T21:24:24.681+0000] {taskinstance.py:3891} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-17T21:24:24.691+0000] {local_task_job_runner.py:240} INFO - ::endgroup::
+[2026-03-17T21:38:48.161+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-17T21:38:48.221+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:38:48.249+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:38:48.251+0000] {taskinstance.py:2856} INFO - Starting attempt 1 of 1
+[2026-03-17T21:38:48.282+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): recuperer_liste_villes> on 2026-03-16 00:00:00+00:00
+[2026-03-17T21:38:48.291+0000] {standard_task_runner.py:72} INFO - Started process 81 to run task
+[2026-03-17T21:38:48.299+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ville_ideale_complet', 'recuperer_liste_villes', 'scheduled__2026-03-16T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/scraping_dag.py', '--cfg-path', '/tmp/tmp1357rf1z']
+[2026-03-17T21:38:48.305+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask recuperer_liste_villes
+[2026-03-17T21:38:48.419+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [running]> on host ***-worker
+[2026-03-17T21:38:48.543+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pipeline_ville_ideale_complet' AIRFLOW_CTX_TASK_ID='recuperer_liste_villes' AIRFLOW_CTX_EXECUTION_DATE='2026-03-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-16T00:00:00+00:00'
+[2026-03-17T21:38:48.547+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-17T21:41:23.468+0000] {logging_mixin.py:190} INFO - Bilan de l'étape 2 : 0 villes ajoutées/mises à jour dans MongoDB.
+[2026-03-17T21:41:23.474+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-03-17T21:41:23.502+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-17T21:41:23.505+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=pipeline_ville_ideale_complet, task_id=recuperer_liste_villes, run_id=scheduled__2026-03-16T00:00:00+00:00, execution_date=20260316T000000, start_date=20260317T213848, end_date=20260317T214123
+[2026-03-17T21:41:23.546+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 0
+[2026-03-17T21:41:23.573+0000] {taskinstance.py:3891} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-17T21:41:23.579+0000] {local_task_job_runner.py:240} INFO - ::endgroup::
+[2026-03-17T21:46:31.620+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-17T21:46:31.644+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:46:31.655+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T21:46:31.657+0000] {taskinstance.py:2856} INFO - Starting attempt 1 of 1
+[2026-03-17T21:46:31.677+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): recuperer_liste_villes> on 2026-03-16 00:00:00+00:00
+[2026-03-17T21:46:31.684+0000] {standard_task_runner.py:72} INFO - Started process 78 to run task
+[2026-03-17T21:46:31.688+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ville_ideale_complet', 'recuperer_liste_villes', 'scheduled__2026-03-16T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/scraping_dag.py', '--cfg-path', '/tmp/tmpdfbxa9hl']
+[2026-03-17T21:46:31.692+0000] {standard_task_runner.py:105} INFO - Job 3: Subtask recuperer_liste_villes
+[2026-03-17T21:46:31.777+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [running]> on host ***-worker
+[2026-03-17T21:46:31.872+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pipeline_ville_ideale_complet' AIRFLOW_CTX_TASK_ID='recuperer_liste_villes' AIRFLOW_CTX_EXECUTION_DATE='2026-03-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-16T00:00:00+00:00'
+[2026-03-17T21:46:31.874+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-17T21:49:09.620+0000] {logging_mixin.py:190} INFO - Bilan de l'étape 2 : 0 villes ajoutées/mises à jour dans MongoDB.
+[2026-03-17T21:49:09.625+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-03-17T21:49:09.644+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-17T21:49:09.647+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=pipeline_ville_ideale_complet, task_id=recuperer_liste_villes, run_id=scheduled__2026-03-16T00:00:00+00:00, execution_date=20260316T000000, start_date=20260317T214631, end_date=20260317T214909
+[2026-03-17T21:49:09.696+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 0
+[2026-03-17T21:49:09.719+0000] {taskinstance.py:3891} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-17T21:49:09.724+0000] {local_task_job_runner.py:240} INFO - ::endgroup::

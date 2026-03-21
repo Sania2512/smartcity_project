@@ -1,0 +1,18 @@
+[2026-03-17T22:11:45.704+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-17T22:11:45.727+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T22:11:45.738+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [queued]>
+[2026-03-17T22:11:45.739+0000] {taskinstance.py:2856} INFO - Starting attempt 5 of 5
+[2026-03-17T22:11:45.760+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): recuperer_liste_villes> on 2026-03-16 00:00:00+00:00
+[2026-03-17T22:11:45.766+0000] {standard_task_runner.py:72} INFO - Started process 146 to run task
+[2026-03-17T22:11:45.770+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ville_ideale_complet', 'recuperer_liste_villes', 'scheduled__2026-03-16T00:00:00+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/scraping_dag.py', '--cfg-path', '/tmp/tmplrzdddcl']
+[2026-03-17T22:11:45.776+0000] {standard_task_runner.py:105} INFO - Job 15: Subtask recuperer_liste_villes
+[2026-03-17T22:11:45.856+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_ville_ideale_complet.recuperer_liste_villes scheduled__2026-03-16T00:00:00+00:00 [running]> on host ***-worker
+[2026-03-17T22:11:45.954+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pipeline_ville_ideale_complet' AIRFLOW_CTX_TASK_ID='recuperer_liste_villes' AIRFLOW_CTX_EXECUTION_DATE='2026-03-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-16T00:00:00+00:00'
+[2026-03-17T22:11:45.956+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-17T22:11:46.085+0000] {logging_mixin.py:190} INFO - Bilan de l'étape 2 : 0 villes ajoutées/mises à jour dans MongoDB.
+[2026-03-17T22:11:46.088+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-03-17T22:11:46.109+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-17T22:11:46.110+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=pipeline_ville_ideale_complet, task_id=recuperer_liste_villes, run_id=scheduled__2026-03-16T00:00:00+00:00, execution_date=20260316T000000, start_date=20260317T221145, end_date=20260317T221146
+[2026-03-17T22:11:46.189+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 0
+[2026-03-17T22:11:46.229+0000] {taskinstance.py:3891} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-17T22:11:46.239+0000] {local_task_job_runner.py:240} INFO - ::endgroup::
