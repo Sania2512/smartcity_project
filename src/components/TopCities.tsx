@@ -1,13 +1,20 @@
 import { motion } from "framer-motion";
 import { Trophy } from "lucide-react";
 import CityCard from "./CityCard";
-import { topCities } from "@/data/cities";
+import type { CityRating } from "@/data/cities";
 
 interface TopCitiesProps {
   onCitySelect: (cityId: string) => void;
+  cities?: CityRating[];
+  loading?: boolean;
 }
 
-const TopCities = ({ onCitySelect }: TopCitiesProps) => {
+const TopCities = ({ onCitySelect, cities = [], loading = false }: TopCitiesProps) => {
+  // Get top 6 cities sorted by rating
+  const topCities = [...cities]
+    .sort((a, b) => (b.overallScore || 0) - (a.overallScore || 0))
+    .slice(0, 6);
+
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -30,14 +37,31 @@ const TopCities = ({ onCitySelect }: TopCitiesProps) => {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {topCities.map((city, i) => (
-            <CityCard
-              key={city.id}
-              city={city}
-              rank={i + 1}
-              onClick={() => onCitySelect(city.id)}
-            />
-          ))}
+          {loading ? (
+            // Loading skeleton
+            [1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="bg-card rounded-2xl overflow-hidden animate-pulse h-96">
+                <div className="w-full h-44 bg-muted" />
+                <div className="p-5 space-y-3">
+                  <div className="h-4 bg-muted rounded w-3/4" />
+                  <div className="h-3 bg-muted rounded w-1/2" />
+                </div>
+              </div>
+            ))
+          ) : topCities.length > 0 ? (
+            topCities.map((city, i) => (
+              <CityCard
+                key={city.id}
+                city={city}
+                rank={i + 1}
+                onClick={() => onCitySelect(city.id)}
+              />
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <p className="text-muted-foreground">No cities available</p>
+            </div>
+          )}
         </div>
       </div>
     </section>

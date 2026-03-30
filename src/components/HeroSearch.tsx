@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { Search, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
-import { allCities } from "@/data/cities";
+import type { CityRating } from "@/data/cities";
 
 interface HeroSearchProps {
   onCitySelect: (cityId: string) => void;
+  cities?: CityRating[];
 }
 
-const HeroSearch = ({ onCitySelect }: HeroSearchProps) => {
+const HeroSearch = ({ onCitySelect, cities = [] }: HeroSearchProps) => {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
 
   const filtered = query.length >= 2
-    ? allCities.filter(c =>
+    ? cities.filter(c =>
         c.name.toLowerCase().includes(query.toLowerCase()) ||
         c.department.toLowerCase().includes(query.toLowerCase())
       ).slice(0, 5)
