@@ -97,12 +97,12 @@ def task_get_villes_list():
     city_href_re = re.compile(r"_([0-9AB]{4,5})$", re.IGNORECASE)
     
     session = requests.Session()
-    session.get(urljoin(BASE_URL, "villespardepts.php"), timeout=10)
+    session.get(urljoin(BASE_URL, VILLES_PAR_DEPTS_ENDPOINT), timeout=10)
     
     headers_ajax = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
         "X-Requested-With": "XMLHttpRequest",
-        "Referer": urljoin(BASE_URL, "villespardepts.php")
+        "Referer": urljoin(BASE_URL, VILLES_PAR_DEPTS_ENDPOINT)
     }
 
     villes_trouvees_total = 0
@@ -194,4 +194,5 @@ with DAG(
     step2 = PythonOperator(task_id='recuperer_liste_villes', python_callable=task_get_villes_list)
     step3 = PythonOperator(task_id='recuperer_details_notes', python_callable=task_get_villes_details)
 
-    step1 >> step2 >> step3
+    # Set task dependencies
+    _ = step1 >> step2 >> step3  # noqa: F841
