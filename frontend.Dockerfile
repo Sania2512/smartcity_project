@@ -1,21 +1,23 @@
-FROM node:20-alpine as build
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm ci --omit=dev
 
 COPY . .
 
 RUN npm run build
 
-FROM busybox:latest
+FROM nginx:1.27-alpine
 
-WORKDIR /app
+WORKDIR /usr/share/nginx/html
 
-COPY --from=build /app/dist /app/dist
+COPY --from=builder /app/dist .
 
-EXPOSE 4173
+COPY nginx.conf /etc/nginx/nginx.conf
 
-CMD ["npx", "serve", "-s", "/app/dist", "-l", "4173"]
+EXPOSE 3000
+
+CMD ["nginx", "-g", "daemon off;"]

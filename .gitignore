@@ -52,4 +52,17 @@ mongo_data/
 .vscode/
 .idea/
 *.swp
->>>>>>> origin/master
+
+# --- Environment & Secrets ---
+.env
+.env.local
+!.env.example
+
+# --- Build artifacts ---
+*.tsbuildinfo
+.turbo/
+coverage/
+
+# --- Lock files (optional, comment if needed for reproducibility) ---
+# bun.lock
+# bun.lockb

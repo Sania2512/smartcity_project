@@ -7,13 +7,26 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://admin:password@localhost:27017/';
+
+// Security: Construct MongoDB URI from environment variables
+const MONGO_USER = encodeURIComponent(process.env.MONGO_USER || 'admin');
+const MONGO_PASSWORD = encodeURIComponent(process.env.MONGO_PASSWORD || 'password');
+const MONGO_HOST = process.env.MONGO_HOST || 'localhost:27017';
+const MONGO_URL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/`;
 const MONGO_DB = process.env.MONGO_DB || 'smartcity';
 
 let db;
 
+// Security: CORS - restrict to frontend origin only
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // MongoDB Connection
@@ -194,12 +207,8 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-async function start() {
-  await connectMongo();
-  app.listen(PORT, () => {
-    console.log(`🚀 Backend API running on http://localhost:${PORT}`);
-    console.log(`📊 MongoDB: ${MONGO_URL}${MONGO_DB}`);
-  });
-}
-
-start();
+await connectMongo();
+app.listen(PORT, () => {
+  console.log(`🚀 Backend API running on http://localhost:${PORT}`);
+  console.log(`📊 MongoDB: ${MONGO_URL}${MONGO_DB}`);
+});

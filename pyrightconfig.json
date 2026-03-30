@@ -1,0 +1,12 @@
+{
+  "typeCheckingMode": "basic",
+  "pythonVersion": "3.11",
+  "reportMissingImports": false,
+  "reportMissingModuleSource": false,
+  "reportUnresolvedImportSymbol": false,
+  "reportGeneralTypeIssues": true,
+  "reportOptionalMemberAccess": true,
+  "reportIncompatibleMethodOverride": true,
+  "exclude": ["**/node_modules", "dags/**"],
+  "include": ["src", "backend"]
+}

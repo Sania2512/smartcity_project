@@ -3,6 +3,8 @@
  * Remplace les données mockées statiques
  */
 
+import type { CityRating } from '@/data/cities';
+
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 class CityAPI {
@@ -18,20 +20,20 @@ class CityAPI {
     return response.json();
   }
 
-  async getCityById(id) {
+  async getCityById(id: string | number): Promise<CityRating | null> {
     const response = await fetch(`${API_BASE_URL}/api/cities/${id}`);
     if (!response.ok) throw new Error('City not found');
     return response.json();
   }
 
-  async searchCities(query) {
+  async searchCities(query: string): Promise<CityRating[]> {
     if (query.length < 2) return [];
     const response = await fetch(`${API_BASE_URL}/api/search?q=${encodeURIComponent(query)}`);
     if (!response.ok) throw new Error('Search failed');
     return response.json();
   }
 
-  async submitRating(cityId, scores, comment = '') {
+  async submitRating(cityId: string | number, scores: Record<string, number>, comment: string = ''): Promise<{ success: boolean }> {
     const response = await fetch(`${API_BASE_URL}/api/cities/${cityId}/rate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -8,14 +8,23 @@ import re
 import time
 import random
 from pymongo import MongoClient
+import os
 
-# --- CONFIGURATION & UTILS (Issu du travail de ta coéquipière) ---
+# Define URL constants
+VILLES_PAR_DEPTS_ENDPOINT = "villespardepts.php"
+VILLES_ENDPOINT = "villes.php"
 BASE_URL = "https://www.ville-ideale.fr/"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
-MONGO_URI = "mongodb://admin:password@mongodb:27017/" 
+
+# Security: Use environment variables instead of hardcoded credentials
+MONGO_USER = os.getenv('MONGO_USER')
+MONGO_PASSWORD = os.getenv('MONGO_PASSWORD')
+if not MONGO_USER or not MONGO_PASSWORD:
+    raise ValueError('MONGO_USER and MONGO_PASSWORD environment variables must be set')
+MONGO_URL = f"mongodb://{MONGO_USER}:{MONGO_PASSWORD}@mongodb:27017/" 
 
 def get_db():
-    client = MongoClient(MONGO_URI)
+    client = MongoClient(MONGO_URL)
     return client['ville_ideale']
 
 # --- FONCTIONS DE SCRAPING ---
@@ -40,7 +49,7 @@ def task_get_departments():
     session.get(BASE_URL, headers=chrome_headers, timeout=10)
     
     # Maintenant on va chercher les départements
-    start_url = urljoin(BASE_URL, "villespardepts.php")
+    start_url = urljoin(BASE_URL, VILLES_PAR_DEPTS_ENDPOINT)
     response = session.get(start_url, headers=chrome_headers, timeout=30)
     
     # DEBUG : Si c'est vide, on essaie une autre page du site qui contient aussi les depts
@@ -75,13 +84,9 @@ def task_get_departments():
         collection.drop()
         collection.insert_many(final_list)
         return [d['code'] for d in final_list]
-    #else:
-        # ULTIME SECOURS : Si vraiment le site bloque tout, on crée le 01 à la main pour débloquer la suite !
-        print("ALERTE : Blocage total. Création manuelle du Dept 01 pour test.")
-        test_dept = {"code": "01", "label": "01-Ain", "url": "https://www.ville-ideale.fr/villes.php?dept=01"}
-        collection.drop()
-        collection.insert_one(test_dept)
-        return ["01"]
+    
+    # No fallback - let exception be caught by DAG error handling
+    raise ValueError("Failed to extract departments from website - possible site blocking")
 
 def task_get_villes_list():
     """Étape 2 : Récupérer les villes (avec simulation si blocage)"""
