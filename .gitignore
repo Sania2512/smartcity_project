@@ -22,3 +22,34 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+.env
+
+# --- Airflow ---
+# On ne versionne pas les logs générés localement
+logs/
+# On ne versionne pas les fichiers de config générés au runtime
+airflow.cfg
+airflow.db
+unittests.cfg
+# On ignore les fichiers PID et de verrouillage
+*.pid
+
+# --- Docker & Base de données ---
+# TRÈS IMPORTANT : On ignore les données brutes de MongoDB
+# (Sinon ton repo fera plusieurs Go et tes collègues auront tes données locales)
+mongo_data/
+
+# --- OS / IDE ---
+.DS_Store
+.vscode/
+.idea/
+*.swp
+>>>>>>> origin/master
